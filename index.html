@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ALPHA DEVOLOPER ASM</title>
     <style>
         * {
@@ -16,10 +16,10 @@
             color: #00ff00;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 12px 8px;
             overflow-x: hidden;
             user-select: none;
         }
@@ -29,39 +29,38 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.97)), 
-                        url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000') no-repeat center center/cover;
-            opacity: 0.12;
+            background: radial-gradient(circle at center, rgba(0, 40, 0, 0.35) 0%, rgba(0, 0, 0, 0.98) 100%),
+                        repeating-linear-gradient(0deg, rgba(0, 255, 0, 0.04) 0px, rgba(0, 255, 0, 0.04) 1px, transparent 1px, transparent 3px);
             z-index: -1;
         }
         .terminal-box {
-            background: rgba(5, 15, 5, 0.9);
+            background: rgba(5, 15, 5, 0.94);
             border: 2px solid #00ff00;
-            box-shadow: 0 0 25px rgba(0, 255, 0, 0.3);
-            padding: 25px;
-            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            padding: 20px 15px;
+            border-radius: 10px;
             width: 100%;
-            max-width: 450px;
+            max-width: 100%;
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
             text-align: center;
         }
         .terminal-header {
             border-bottom: 1px dashed #00ff00;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 13px;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-align: left;
         }
         h2 {
-            margin-bottom: 15px;
-            font-size: 20px;
+            margin-bottom: 12px;
+            font-size: 19px;
             text-shadow: 0 0 5px #00ff00;
         }
         .input-group {
-            margin-bottom: 15px;
+            margin-bottom: 14px;
             text-align: left;
         }
         label {
@@ -71,12 +70,12 @@
         }
         input {
             width: 100%;
-            padding: 12px;
+            padding: 13px;
             border: 1px solid #00ff00;
-            border-radius: 4px;
+            border-radius: 5px;
             background-color: #000;
             color: #00ff00;
-            font-size: 14px;
+            font-size: 15px;
             outline: none;
             text-align: center;
         }
@@ -86,7 +85,7 @@
             background-color: #00ff00;
             color: #000;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             font-size: 15px;
             font-weight: bold;
             cursor: pointer;
@@ -98,12 +97,29 @@
             box-shadow: 0 0 15px #00ff00;
         }
         .pred-val {
-            font-size: 50px;
+            font-size: 54px;
             font-weight: 900;
-            margin: 10px 0;
+            margin: 12px 0;
             text-shadow: 0 0 20px #00ff00;
         }
-        /* Small Telegram Channel Button */
+        .btn-get-pass {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #0088cc, #005588);
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 12px;
+            box-shadow: 0 0 10px rgba(0, 136, 204, 0.4);
+            text-align: center;
+        }
         .btn-telegram {
             display: inline-block;
             width: auto;
@@ -121,43 +137,37 @@
             margin-top: 15px;
             box-shadow: 0 0 10px rgba(0, 136, 204, 0.4);
         }
-        .btn-telegram:hover {
-            box-shadow: 0 0 15px #00ff00;
-        }
-        .get-pass-link {
-            display: block;
-            margin-top: 12px;
-            font-size: 12px;
-            color: #00ff00;
-            text-decoration: underline;
-            cursor: pointer;
-        }
         .history-box {
             background: rgba(5, 10, 5, 0.95);
             border: 2px solid #00ff00;
-            border-radius: 8px;
+            border-radius: 10px;
             width: 100%;
-            max-width: 450px;
-            padding: 15px;
-            box-shadow: 0 0 25px rgba(0, 255, 0, 0.2);
+            max-width: 100%;
+            padding: 15px 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 11px;
+            font-size: 12px;
             margin-top: 10px;
         }
         th, td {
             border: 1px solid #00ff00;
-            padding: 8px;
+            padding: 8px 4px;
             text-align: center;
         }
-        th { background-color: rgba(0, 255, 0, 0.1); color: #00ff00; }
+        th { background-color: rgba(0, 255, 0, 0.12); color: #00ff00; }
         .win { color: #00ff00; font-weight: bold; }
         .loss { color: #ff3333; font-weight: bold; }
         .hidden { display: none; }
-        .error-msg { color: #ff3333; font-size: 12px; margin-top: 8px; line-height: 1.4; }
-        .footer-branding { margin-top: 15px; font-size: 12px; letter-spacing: 2px; color: #00ff00; text-shadow: 0 0 5px #00ff00; }
+        .error-msg { color: #ff3333; font-size: 12px; margin-top: 10px; line-height: 1.4; text-align: center; }
+        .footer-branding { margin-top: 12px; margin-bottom: 10px; font-size: 12px; letter-spacing: 2px; color: #00ff00; text-shadow: 0 0 5px #00ff00; }
+        
+        @media (min-width: 600px) {
+            body { padding: 20px; justify-content: center; }
+            .terminal-box, .history-box { max-width: 480px; padding: 25px; }
+        }
     </style>
 </head>
 <body>
@@ -172,11 +182,13 @@
         <h2>[ ACCESS REQUIRED ]</h2>
         <div class="input-group">
             <label>ENTER ACCESS PASSWORD:</label>
-            <input type="password" id="passInput" placeholder="PASSWORD HERE..." autocomplete="off">
+            <input type="password" id="passInput" placeholder="PASSWORD HERE..." autocomplete="off" onkeydown="if(event.key==='Enter') attemptLogin()">
         </div>
-        <button onclick="attemptLogin()">VERIFY KEY</button>
+        <button id="loginBtn" onclick="attemptLogin()">VERIFY KEY</button>
         <div id="loginError" class="error-msg hidden"></div>
-        <a class="get-pass-link" href="https://t.me/ALPHA_AXR" target="_blank">Get Password from @ALPHA_AXR</a>
+        <div id="getPassContainer" class="hidden">
+            <a class="btn-get-pass" href="https://t.me/ALPHA_AXR" target="_blank">GET PASSWORD FROM @ALPHA_AXR</a>
+        </div>
     </div>
 
     <!-- Server Offline View -->
@@ -188,9 +200,9 @@
     <!-- App Dashboard Section -->
     <div id="appPage" class="hidden">
         <h2>ALPHA DEVOLOPER ASM</h2>
-        <div style="color: #aaa; font-size: 12px;" id="pID">PERIOD: ---</div>
+        <div style="color: #aaa; font-size: 14px; font-weight: bold;" id="pID">PERIOD: ---</div>
         <div class="pred-val" id="pRes">WAIT...</div>
-        <div style="color: #ffff00; font-size: 12px; font-weight: bold; border:1px dashed #ffff00; padding:6px; margin-top:10px;" id="pOpps">SYNCING...</div>
+        <div style="color: #ffff00; font-size: 13px; font-weight: bold; border:1px dashed #ffff00; padding:8px; margin-top:10px;" id="pOpps">SYNCING...</div>
     </div>
 </div>
 
@@ -209,24 +221,80 @@
 <div class="footer-branding">ALPHA DEVOLOPER ASM</div>
 
 <script>
-    const DB_URL = "https://wingo30s1-default-rtdb.firebaseio.com/";
+    const DB_URL = "https://wingo30s1-default-rtdb.firebaseio.com";
     const BIG_POOL = [5,6,7,8,9], SMALL_POOL = [0,1,2,3,4];
     let currentOpposites = [];
     let heartbeatTimer = null;
+    let logicTimer = null;
+
+    function playWinSound() {
+        try {
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContextClass) return;
+            const audioCtx = new AudioContextClass();
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            oscillator.type = 'triangle';
+            oscillator.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15);
+            
+            gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.4);
+        } catch(e) {}
+    }
+
+    function playAIVoice() {
+        try {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            
+            const messageText = "দয়া করে ৫ স্টেপ ফলো করে ট্রেড প্লে করেন, স্টেপ ফলো না করলে আপনার লস হতে পারে!";
+            const utterance = new SpeechSynthesisUtterance(messageText);
+            utterance.lang = 'bn-BD';
+            utterance.pitch = 0.78;
+            utterance.rate = 0.92;
+
+            const voices = window.speechSynthesis.getVoices() || [];
+            const maleVoice = voices.find(v => 
+                v.lang && (v.lang.includes('bn') || v.lang.includes('hi')) && 
+                v.name && (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('hemant') || v.name.toLowerCase().includes('pradeep') || v.name.toLowerCase().includes('bashkar'))
+            ) || voices.find(v => v.lang && v.lang.includes('bn'));
+
+            if (maleVoice) {
+                utterance.voice = maleVoice;
+            }
+            window.speechSynthesis.speak(utterance);
+        } catch(e) {}
+    }
 
     function getDeviceToken() {
-        let token = localStorage.getItem('app_device_token');
-        if (!token) {
-            token = 'dev_' + Math.random().toString(36).substr(2, 9) + Date.now();
-            localStorage.setItem('app_device_token', token);
+        try {
+            let token = localStorage.getItem('app_device_token');
+            if (!token) {
+                token = 'dev_' + Math.random().toString(36).substring(2, 11) + Date.now();
+                localStorage.setItem('app_device_token', token);
+            }
+            return token;
+        } catch(e) {
+            return 'dev_session_' + Date.now();
         }
-        return token;
     }
 
     async function attemptLogin() {
         const enteredPass = document.getElementById('passInput').value.trim();
         const errDiv = document.getElementById('loginError');
+        const getPassBtn = document.getElementById('getPassContainer');
+        const loginBtn = document.getElementById('loginBtn');
+        
         errDiv.classList.add('hidden');
+        getPassBtn.classList.add('hidden');
 
         if (!enteredPass) {
             errDiv.innerText = "Please enter password!";
@@ -234,18 +302,34 @@
             return;
         }
 
+        loginBtn.innerText = "VERIFYING...";
+        loginBtn.disabled = true;
+
         try {
-            const statusRes = await fetch(`${DB_URL}/serverStatus.json`);
-            const isServerOn = await statusRes.json();
-            if (isServerOn === false) {
+            let isServerOn = true;
+            let mainPass = "ALPHAH2";
+
+            try {
+                const statusRes = await fetch(`${DB_URL}/serverStatus.json`);
+                if (statusRes.ok) {
+                    const statusData = await statusRes.json();
+                    if (statusData === false) isServerOn = false;
+                }
+            } catch(e) {}
+
+            if (!isServerOn) {
                 document.getElementById('loginPage').classList.add('hidden');
                 document.getElementById('serverOffPage').classList.remove('hidden');
                 return;
             }
 
-            const mainPassRes = await fetch(`${DB_URL}/mainPassword.json`);
-            let mainPass = await mainPassRes.json();
-            if(!mainPass) mainPass = "ALPHAH2";
+            try {
+                const mainPassRes = await fetch(`${DB_URL}/mainPassword.json`);
+                if (mainPassRes.ok) {
+                    const passData = await mainPassRes.json();
+                    if (passData) mainPass = passData;
+                }
+            } catch(e) {}
 
             const myToken = getDeviceToken();
 
@@ -254,38 +338,46 @@
                 return;
             }
 
-            const tempRes = await fetch(`${DB_URL}/tempPasswords/${enteredPass}.json`);
-            const tempObj = await tempRes.json();
+            const tempRes = await fetch(`${DB_URL}/tempPasswords/${encodeURIComponent(enteredPass)}.json`);
+            if (tempRes.ok) {
+                const tempObj = await tempRes.json();
+                if (tempObj) {
+                    const now = Date.now();
+                    if (now > tempObj.expiresAt) {
+                        errDiv.innerText = "Password expired! Click below to get a new password.";
+                        errDiv.classList.remove('hidden');
+                        getPassBtn.classList.remove('hidden');
+                        return;
+                    }
 
-            if (tempObj) {
-                const now = Date.now();
-                if (now > tempObj.expiresAt) {
-                    errDiv.innerText = "Password expired! Get new password from @ALPHA_AXR";
-                    errDiv.classList.remove('hidden');
+                    if (tempObj.usedBy && tempObj.usedBy !== myToken) {
+                        errDiv.innerText = "Already used on another device!";
+                        errDiv.classList.remove('hidden');
+                        getPassBtn.classList.remove('hidden');
+                        return;
+                    }
+
+                    await fetch(`${DB_URL}/tempPasswords/${encodeURIComponent(enteredPass)}/usedBy.json`, {
+                        method: 'PUT',
+                        body: JSON.stringify(myToken)
+                    }).catch(() => {});
+
+                    grantAccess();
                     return;
                 }
-
-                if (tempObj.usedBy && tempObj.usedBy !== myToken) {
-                    errDiv.innerText = "Already used on another device! Get password from @ALPHA_AXR";
-                    errDiv.classList.remove('hidden');
-                    return;
-                }
-
-                await fetch(`${DB_URL}/tempPasswords/${enteredPass}/usedBy.json`, {
-                    method: 'PUT',
-                    body: JSON.stringify(myToken)
-                });
-
-                grantAccess();
-                return;
             }
 
-            errDiv.innerHTML = 'Wrong password! <br><a href="https://t.me/ALPHA_AXR" target="_blank" style="color:#00ff00;">Get password from @ALPHA_AXR</a>';
+            errDiv.innerText = "Wrong password! Click below to get your password.";
             errDiv.classList.remove('hidden');
+            getPassBtn.classList.remove('hidden');
 
         } catch(e) {
-            errDiv.innerText = "Network Error! Check Connection.";
+            errDiv.innerText = "Wrong password or connection issue!";
             errDiv.classList.remove('hidden');
+            getPassBtn.classList.remove('hidden');
+        } finally {
+            loginBtn.innerText = "VERIFY KEY";
+            loginBtn.disabled = false;
         }
     }
 
@@ -293,12 +385,14 @@
         document.getElementById('loginPage').classList.add('hidden');
         document.getElementById('appPage').classList.remove('hidden');
         document.getElementById('historyContainer').classList.remove('hidden');
+        playAIVoice();
         runLogic();
         startHeartbeat();
     }
 
     function startHeartbeat() {
-        const sessionID = 'user_' + Math.random().toString(36).substr(2, 9);
+        if (heartbeatTimer) clearInterval(heartbeatTimer);
+        const sessionID = 'user_' + Math.random().toString(36).substring(2, 11);
         const sendPulse = () => {
             fetch(`${DB_URL}/liveUsers/${sessionID}.json`, {
                 method: 'PUT',
@@ -309,51 +403,70 @@
         heartbeatTimer = setInterval(sendPulse, 10000);
     }
 
-    async function runLogic() {
-        setInterval(async () => {
-            try {
-                const sCheck = await fetch(`${DB_URL}/serverStatus.json`);
+    async function fetchGameData() {
+        try {
+            const sCheck = await fetch(`${DB_URL}/serverStatus.json`);
+            if (sCheck.ok) {
                 const serverStatus = await sCheck.json();
                 if (serverStatus === false) {
                     document.getElementById('appPage').classList.add('hidden');
                     document.getElementById('historyContainer').classList.add('hidden');
                     document.getElementById('serverOffPage').classList.remove('hidden');
                     if (heartbeatTimer) clearInterval(heartbeatTimer);
+                    if (logicTimer) clearInterval(logicTimer);
                     return;
                 }
+            }
 
-                const res = await fetch('https://draw.ar-lottery01.com/WinGo/WinGo_30S/GetHistoryIssuePage.json');
-                const json = await res.json();
-                const latest = json.data.list[0];
-                const trend = json.data.list.slice(0, 3).map(x => parseInt(x.number) >= 5 ? "BIG" : "SMALL");
-                const nextPred = trend.filter(x => x === "BIG").length > 1 ? "BIG" : "SMALL";
+            const res = await fetch('https://draw.ar-lottery01.com/WinGo/WinGo_30S/GetHistoryIssuePage.json');
+            if (!res.ok) return;
+            const json = await res.json();
+            if (!json || !json.data || !json.data.list || !json.data.list.length) return;
 
-                if(window.lastId !== latest.issueNumber) {
-                    const actualSize = parseInt(latest.number) >= 5 ? "BIG" : "SMALL";
-                    let checkAgainst = window.savedPrediction || nextPred;
+            const latest = json.data.list[0];
+            const trend = json.data.list.slice(0, 3).map(x => parseInt(x.number) >= 5 ? "BIG" : "SMALL");
+            const nextPred = trend.filter(x => x === "BIG").length > 1 ? "BIG" : "SMALL";
+
+            if (window.lastId !== latest.issueNumber) {
+                const actualSize = parseInt(latest.number) >= 5 ? "BIG" : "SMALL";
+                let checkAgainst = window.savedPrediction || nextPred;
+                
+                const sameSide = checkAgainst === "BIG" ? BIG_POOL : SMALL_POOL;
+                const oppSide = checkAgainst === "BIG" ? SMALL_POOL : BIG_POOL;
+                
+                const num1 = sameSide[Math.floor(Math.random() * sameSide.length)];
+                const num2 = oppSide[Math.floor(Math.random() * oppSide.length)];
+                currentOpposites = [num1, num2];
+
+                if (window.lastId) {
+                    const isWin = (checkAgainst === actualSize) || (window.savedOpps && window.savedOpps.includes(parseInt(latest.number)));
+                    const statusText = isWin ? 'WIN ✅' : 'LOSS ❌';
                     
-                    const sameSide = checkAgainst === "BIG" ? BIG_POOL : SMALL_POOL;
-                    const oppSide = checkAgainst === "BIG" ? SMALL_POOL : BIG_POOL;
-                    
-                    const num1 = sameSide[Math.floor(Math.random() * sameSide.length)];
-                    const num2 = oppSide[Math.floor(Math.random() * oppSide.length)];
-                    currentOpposites = [num1, num2];
-
-                    if(window.lastId) {
-                        const isWin = (checkAgainst === actualSize) || window.savedOpps.includes(parseInt(latest.number));
-                        const statusText = isWin ? 'WIN ✅' : 'LOSS ❌';
-                        const row = `<tr><td>${latest.issueNumber.slice(-3)}</td><td>${checkAgainst}</td><td>${latest.number}</td><td class="${isWin?'win':'loss'}">${statusText}</td></tr>`;
-                        document.getElementById('logs').innerHTML = row + document.getElementById('logs').innerHTML;
+                    if (isWin) {
+                        playWinSound();
                     }
-                    window.lastId = latest.issueNumber;
-                    window.savedPrediction = nextPred;
-                    window.savedOpps = currentOpposites;
+
+                    const shortIssueNum = "..." + String(latest.issueNumber).slice(-4);
+                    const row = `<tr><td>${shortIssueNum}</td><td>${checkAgainst}</td><td>${latest.number}</td><td class="${isWin?'win':'loss'}">${statusText}</td></tr>`;
+                    document.getElementById('logs').innerHTML = row + document.getElementById('logs').innerHTML;
                 }
-                document.getElementById('pID').innerText = "PERIOD: " + (BigInt(latest.issueNumber) + 1n).toString();
-                document.getElementById('pRes').innerText = nextPred;
-                document.getElementById('pOpps').innerText = "NUMBERS: " + currentOpposites.join(", ");
-            } catch(e) {}
-        }, 3000);
+                window.lastId = latest.issueNumber;
+                window.savedPrediction = nextPred;
+                window.savedOpps = currentOpposites;
+            }
+            
+            const fullPeriod = (BigInt(latest.issueNumber) + 1n).toString();
+            const shortPeriod = "..." + fullPeriod.slice(-4);
+            document.getElementById('pID').innerText = "PERIOD: " + shortPeriod;
+            document.getElementById('pRes').innerText = nextPred;
+            document.getElementById('pOpps').innerText = "NUMBERS: " + currentOpposites.join(", ");
+        } catch(e) {}
+    }
+
+    function runLogic() {
+        fetchGameData();
+        if (logicTimer) clearInterval(logicTimer);
+        logicTimer = setInterval(fetchGameData, 3000);
     }
 </script>
 </body>
